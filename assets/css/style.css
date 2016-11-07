@@ -1,41 +1,10 @@
-body{
-	text-align: center;
-}
-
-#answers{
-	margin: 0 auto;
-	text-align: center;
-	margin: 0 25%;
-}
-.answers{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border: 1px solid #000;
-	font-size: 22px;
-	height: 50px;
-	margin: 10px;
-	margin-bottom: 20px;
-	padding-top: 10px;
-    width: 500px;
-  	text-align: center;
-}
-.answersExplanation {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-/*    border: 1px solid #000;*/
-    font-size: 22px;
-    margin: 10%;
-    overflow: auto;
-    
-}
-
-.answers:hover{
-  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.59)
-
-}
-
-.content {
-	background-color: #000;
-}
-.image {
-	float: left;
-	width: 40%;
-}
+	.gifs{
+		border: 1px solid #000;
+		display: inline-block;
+		margin: 10px;
+		max-width: 250px;
+		overflow: auto;
+	}
+	img{
+		width: 100%;
+	}

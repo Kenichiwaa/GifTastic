@@ -1,124 +1,38 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title></title>
-	<style>
-	.gifs{
-		border: 1px solid #000;
-		display: inline-block;
-		margin: 10px;
-		max-width: 250px;
-		overflow: auto;
-	}
-	img{
-		width: 100%;
-	}
-	</style>
+  <meta charset="utf-8">
+
+  <title>The Trivia Game!</title>
+  <meta name="description" content="Gify Assignment for Week 6">
+  <meta name="Kenichiwa" content="Gifs">
+
+	<!-- Link to Stylesheet -->
+  	<link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 
-  <!-- Rendered Buttons will get Dumped Here  -->
-  <div id="buttonsView"></div>
+	<!-- Rendered Buttons will get Dumped Here  -->
+	<div id="buttonsView"></div>
 
-  <!-- This form will be where users input data about the gifs -->
-  <form id="gif-form">
-    <label for="gif-input">Search for a Gif</label>
-    <input type="text" id="gif-input"><br>
-    
-    <!-- This button will trigger our AJAX call -->
-    <input id="findGif" type="submit" value="gif Search">
-  </form>
+	<!-- This form will be where users input data about the gifs -->
+	<form id="gif-form">
+		<label for="gif-input">Search for a Gif</label>
+		<input type="text" id="gif-input"><br>
 
-  <!-- Gifs will Get Dumped Dere -->
-  <div id="gifView"></div>
+		<!-- This button will trigger our AJAX call -->
+		<input id="findGif" type="submit" value="gif Search">
+	</form>
 
-<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
-<script type="text/javascript">
-   // Inital array of gifs 
-   var gifs = ['cats', 'dogs', 'lama', 'piggy'];
-// ========================================================
-	// This function will display gif to HTML
-	function displayGifs(){
-		var gif = $(this).attr('data-name');
- 		var randomQueryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC";
- 		// Creates an Ajax call for the specific gif
-		 $.ajax({url: randomQueryURL, method: 'GET'}).done(function(callback) {
-		  		console.log(callback.data);
-		 
-			 for (var i = 1; i < 7; i++) {
-			 		// Create Div
-			  		var gifDiv = $('<div class="gifs">');
-			  		// Retreives rating data 
-			  		var rating = callback.data[i].rating;
-			  		// Places rating in paragraph 
-			  		var ratingText = $('<p>').html("<b>Rating:</b> " + rating);
-			  		// Append text to container gifDiv
-			  		gifDiv.append(ratingText);
-			  		// Create image from API
-			  		var image = $('<img class="images">').attr("src", callback.data[i].images.fixed_height_still.url)
-			  											 .attr("still", callback.data[i].images.fixed_height_still.url)
-			  											 .data('imagedata', {still: callback.data[i].images.fixed_height_still.url,
-			  											 					animate: callback.data[i].images.downsized.url
-			  											 					 });
-			  		
+	<!-- Gifs will Get Dumped Dere -->
+	<div id="gifView"></div>
 
 
-			  		// Append image to container gifDiv
-			  		gifDiv.append(image);
-			  		// Display gifDiv in #moviesView
-			  		$('#gifView').prepend(gifDiv);
-			 
-				}; // End for loop
-					$('.gifs').mouseout(function(){
-						console.log("yup");
-						 image = $('<img class="images">').attr($('.images').data("imagedata").still);
-				  		// Display gifDiv in #moviesView
-				  		$(this).prepend(image);
-			  		});
-
-					if($('.gifs').mouseenter()){
-						var image = $('<img class="images">').attr("src", callback.data[i].images.fixed_height_still.url);
-					  		gifDiv.append(image);
-			  		// Display gifDiv in #moviesView
-			  		$('#gifView').prepend(gifDiv);
-					}
-					if($('.gifs').mouseout()){
-						var image = $('<img class="images">').attr("src", callback.data[i].images.downsized.url);
-									  		gifDiv.append(image);
-			  		// Display gifDiv in #moviesView
-			  		$('#gifView').prepend(gifDiv);
-					};
-
-		  }); // End ajax jQuery
-	} // End function displayGifs()
-// ========================================================
-	// Function for displaying gif data
-	function renderButtons(){
-		$('#buttonsView').empty();
-		for (var i = 0; i < gifs.length; i++){ // go through array of gifs
-			var a = $('<button>')// for each, create a button
-			a.addClass('gif'); // addClass of gif
-			a.attr('data-name', gifs[i]); // add name attr
-			a.text(gifs[i]); // text for button
-			$('#buttonsView').append(a); // append to screen
-		} // End for Loop
-	} // End function renderButtons()
-// ========================================================
-	// This .on("click") function will trigger the AJAX Call
-	$('#findGif').on('click', function(){
-		// Here we grab the text from the input box 
-		var gif = $('#gif-input').val().trim().replace(' ', '+');
-		// Push user input text into array of gifs 
-		gifs.push(gif);
-		renderButtons();
-		return false;
-	})
-// ========================================================
-$(document).on('click', '.gif', displayGifs);
-
-renderButtons();
-
-</script>
-
+	<!-- jQuery CDN -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Link to the JavaScript -->
+  	<script src="assets/javascript/javascript.js"></script>
 
 </body>
 </html>
